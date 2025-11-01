@@ -1,0 +1,5 @@
+node_modules
+dist
+bin.ts
+main.ts
+.cursor
