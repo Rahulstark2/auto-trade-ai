@@ -25,3 +25,12 @@ export function getEma(prices: number[], period: number): number[] {
 export function getMidPrices(candlesticks: Candlestick[]) {
     return candlesticks.map(({open, close}) => Number(((open + close) / 2).toFixed(2)));
 }
+
+// macd => ema26 - ema14
+export function getMacd(prices: number[]) {
+    const ema26 = getEma(prices, 26); // [].length = 26
+    const ema14 = getEma(prices, 14); // [].length = 14
+
+    const macd = ema26.slice(-14).map((_, index) => (ema26[index] ?? 0) - (ema14[index] ?? 0));
+    return macd
+}
